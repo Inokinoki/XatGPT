@@ -5,8 +5,8 @@
     x:Class="XatGPT.AuthenticationPage">
     <ContentPage.Content>
         <StackLayout>
-            <Frame Padding="36 24"
-                   Margin="0 0 20 0"
+            <Frame Padding="36, 24, 36, 24"
+                   Margin="0, 0, 0, 20"
                    CornerRadius="0">
                 <StackLayout >
                     <Label Text="Welcome to XatGPT!"
