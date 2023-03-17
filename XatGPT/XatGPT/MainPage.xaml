@@ -20,12 +20,12 @@
         <ListView x:Name="ChatsList"
                   VerticalOptions="FillAndExpand"
                   Refreshing="ChatsList_Refreshing"
+                  ItemTapped="ChatsList_ItemTapped"
                   IsPullToRefreshEnabled="true" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Title}"
-                              Detail="{Binding SystemMessage}"
-                              Tapped="ChatCell_Tapped" >
+                              Detail="{Binding SystemMessage}" >
                         <TextCell.ContextActions>
                             <MenuItem CommandParameter="{Binding .}"
                                       Clicked="DeleteChatItem_Clicked"

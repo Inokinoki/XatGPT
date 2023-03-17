@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XatGPT.ChatConversationPage">
+    
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Conversation"
+                   x:Name="ChatTitleLabel"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold" />
+            <Button x:Name="ChatSettingButton"
+                   Text="Settings"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="End"
+                   Clicked="ChatSettingButton_Clicked" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView x:Name="ChatList"
+                  VerticalOptions="FillAndExpand"
+                  Refreshing="ChatList_Refreshing"
+                  IsPullToRefreshEnabled="true"
+                  ItemsSource="{Binding Messages}" >
+            <ListView.Header>
+                <StackLayout Orientation="Horizontal">
+                    <Label HorizontalTextAlignment="Center"
+                           x:Name="ChatList_Header"
+                           Text="There is no prompt for this conversation."
+                           HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Text}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Frame Grid.Row="1"
+               BorderColor="Gray"
+               Padding="0"
+               HasShadow="False" >
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Editor VerticalOptions="CenterAndExpand"
+                        Text="{Binding MessageText}"
+                        AutoSize="TextChanges"
+                        Placeholder="Type your message"
+                        Grid.Column="0" />
+                <Button HorizontalOptions="EndAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Text="Send"
+                        Margin="5"
+                        Grid.Column="1" />
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>
+

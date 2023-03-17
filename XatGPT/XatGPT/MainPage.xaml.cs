@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenAI_API.Chat;
 using Xamarin.Forms;
 
 namespace XatGPT
@@ -38,10 +39,10 @@ namespace XatGPT
             this.ChatsList.IsRefreshing = false;
         }
 
-        async void SaveChatConversationToDB(ChatConversation conversation)
+        async Task<int> SaveChatConversationToDB(ChatConversation conversation)
         {
             var dbInstance = await ChatConversationDB.Instance;
-            await dbInstance.SaveItemAsync(conversation);
+            return await dbInstance.SaveItemAsync(conversation);
         }
 
         async void NewChatButton_Clicked(System.Object sender, System.EventArgs e)
@@ -59,8 +60,18 @@ namespace XatGPT
             conversation.ModelName = "gpt-3.5-turbo";   // Default is gpt-3.5
             conversation.Title = "Untitled";
 
-            SaveChatConversationToDB(conversation);
-            // TODO: Enter the conversation
+            // Insert and wait for the ID updating
+            if (await SaveChatConversationToDB(conversation) < 1 ||
+                conversation.Id == 0)
+            {
+                // Update failed
+                await DisplayAlert("Create conversation failed",
+                    "Please check the storage permission or space", "OK");
+                return;
+            }
+
+            // Enter the conversation
+            await Navigation.PushAsync(new ChatConversationPage(conversation));
         }
 
         void ChatsList_Refreshing(System.Object sender, System.EventArgs e)
@@ -74,9 +85,11 @@ namespace XatGPT
             // TODO
         }
 
-        void ChatCell_Tapped(System.Object sender, System.EventArgs e)
+        void ChatsList_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
-            // TODO
+            var conversation = e.Item as ChatConversation;
+            // Enter the conversation
+            Navigation.PushAsync(new ChatConversationPage(conversation));
         }
     }
 }
