@@ -31,9 +31,29 @@ namespace XatGPT
             this.ChatsList.IsRefreshing = false;
         }
 
-        void NewChatButton_Clicked(System.Object sender, System.EventArgs e)
+        async void SaveChatConversationToDB(ChatConversation conversation)
         {
-            // TODO
+            var dbInstance = await ChatConversationDB.Instance;
+            await dbInstance.SaveItemAsync(conversation);
+        }
+
+        async void NewChatButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            // Pop-up an alert to ask the prompt
+            string prompt = await DisplayPromptAsync("Create a conversation",
+                "What's the prompt?");
+            if (prompt == null)
+            {
+                // The user gives up
+                return;
+            }
+            var conversation = new ChatConversation();
+            conversation.SystemMessage = prompt;
+            conversation.ModelName = "gpt-3.5-turbo";   // Default is gpt-3.5
+            conversation.Title = "Untitled";
+
+            SaveChatConversationToDB(conversation);
+            // TODO: Enter the conversation
         }
 
         void ChatsList_Refreshing(System.Object sender, System.EventArgs e)

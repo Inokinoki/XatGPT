@@ -23,8 +23,8 @@
                   IsPullToRefreshEnabled="true" >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Information}"
-                              Detail="{Binding Text}"
+                    <TextCell Text="{Binding Title}"
+                              Detail="{Binding SystemMessage}"
                               Tapped="ChatCell_Tapped" >
                         <TextCell.ContextActions>
                             <MenuItem CommandParameter="{Binding .}"
