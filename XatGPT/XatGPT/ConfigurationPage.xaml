@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XatGPT.ConfigurationPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Settings"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout >
+            <Label x:Name="OpenAIAPILabel"
+                   Text="OpenAI API:" />
+            <Editor x:Name="InputOpenAIAPI"
+                    Placeholder="Input your OpenAI API" />
+            <Button x:Name="ClearButton"
+                    Text="Clear"
+                    Clicked="ClearButton_Clicked" />
+            <Button x:Name="SaveButton"
+                    Text="Save"
+                    Clicked="SaveButton_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

@@ -2,6 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XatGPT.MainPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Chats"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold" />
+            <Button x:Name="NewChatButton"
+                   Text="New"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="End"
+                   Clicked="NewChatButton_Clicked" />
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <StackLayout>
     </StackLayout>
