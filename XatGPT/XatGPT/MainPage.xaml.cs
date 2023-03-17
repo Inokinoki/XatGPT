@@ -14,7 +14,14 @@ namespace XatGPT
         {
             InitializeComponent();
 
+            this.Appearing += OnPageAppearing;
+
             this.ChatsList.IsRefreshing = true;
+        }
+
+        void OnPageAppearing(System.Object sender, System.EventArgs e)
+        {
+            // Load conversation on appearing
             LoadChatConversations();
         }
 
