@@ -17,6 +17,35 @@
     </NavigationPage.TitleView>
 
     <StackLayout>
+        <ListView x:Name="ChatsList"
+                  VerticalOptions="FillAndExpand"
+                  Refreshing="ChatsList_Refreshing"
+                  IsPullToRefreshEnabled="true" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Information}"
+                              Detail="{Binding Text}"
+                              Tapped="ChatCell_Tapped" >
+                        <TextCell.ContextActions>
+                            <MenuItem CommandParameter="{Binding .}"
+                                      Clicked="DeleteChatItem_Clicked"
+                                      Text="Delete"
+                                      IsDestructive="True" />
+                        </TextCell.ContextActions>
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+            <ListView.Footer>
+                <StackLayout Orientation="Horizontal">
+                    <Label HorizontalTextAlignment="Center"
+                           x:Name="ChatsList_Footer"
+                           IsVisible="false"
+                           Text="There is no conversations, create a new one↗️"
+                           HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+            </ListView.Footer>
+        </ListView>
     </StackLayout>
 
 </ContentPage>
