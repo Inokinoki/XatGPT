@@ -10,7 +10,7 @@ namespace XatGPT
         {
             InitializeComponent();
 
-            MainPage = new MainTabbedPage();
+            MainPage = new AuthenticationPage();
         }
 
         protected override void OnStart ()
