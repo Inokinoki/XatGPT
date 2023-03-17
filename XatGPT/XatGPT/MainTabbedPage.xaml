@@ -9,6 +9,11 @@
             <local:MainPage />
         </x:Arguments>
     </NavigationPage>
+    <NavigationPage Title="Completion">
+        <x:Arguments>
+            <local:CompletionPage />
+        </x:Arguments>
+    </NavigationPage>
     <NavigationPage Title="Settings">
         <x:Arguments>
             <local:ConfigurationPage />
