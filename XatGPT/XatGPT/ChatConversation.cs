@@ -14,9 +14,12 @@ namespace XatGPT
         // Conversation related fields
         public string SystemMessage { get; set; }
         public string ModelName { set; get; }
+        public double Temperature { set; get; }
 
         [Ignore]
-        private Conversation Conversation { get; set; }
+        public Conversation Conversation { get; set; }
+        [Ignore]
+        public ChatRequest Request { get; set; }
 
         public ChatConversation()
         {

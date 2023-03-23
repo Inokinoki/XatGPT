@@ -28,10 +28,15 @@
                   VerticalOptions="FillAndExpand"
                   Refreshing="ChatList_Refreshing"
                   IsPullToRefreshEnabled="true"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
                   ItemsSource="{Binding Messages}" >
             <ListView.Header>
                 <StackLayout Orientation="Horizontal">
                     <Label HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           Margin="5"
+                           TextColor="Gray"
                            x:Name="ChatList_Header"
                            Text="There is no prompt for this conversation."
                            HorizontalOptions="CenterAndExpand" />
@@ -40,8 +45,32 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Text}" />
+                        <StackLayout Padding="10"
+                                     VerticalOptions="StartAndExpand" >
+                            <Grid HorizontalOptions="Fill"
+                                  VerticalOptions="StartAndExpand" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                       VerticalOptions="CenterAndExpand"
+                                       IsVisible="{Binding IsAssistant}"
+                                       Text="OpenAI" />
+                                <Frame Grid.Column="1"
+                                       Padding="10"
+                                       Margin="5" >
+                                    <Label HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand"
+                                           LineBreakMode="WordWrap"
+                                           Text="{Binding Text}" />
+                                </Frame>
+                                <Label Grid.Column="2"
+                                       VerticalOptions="CenterAndExpand"
+                                       Text="Me"
+                                       IsVisible="{Binding IsUser}" />
+                            </Grid>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

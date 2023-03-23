@@ -39,6 +39,7 @@ namespace XatGPT
             {
                 var instance = new ChatConversationDB();
                 CreateTableResult result = await Database.CreateTableAsync<ChatConversation>();
+                result = await Database.CreateTableAsync<ChatMessage>();
                 return instance;
             });
 
@@ -72,6 +73,23 @@ namespace XatGPT
         public Task<int> DeleteItemAsync(ChatConversation item)
         {
             return Database.DeleteAsync(item);
+        }
+
+        public Task<int> SaveMessageAsync(ChatMessage msg)
+        {
+            if (msg.Id != 0)
+            {
+                return Database.UpdateAsync(msg);
+            }
+            else
+            {
+                return Database.InsertAsync(msg);
+            }
+        }
+
+        public Task<List<ChatMessage>> GetChatMessageFromConversation(ChatConversation conv)
+        {
+            return Database.Table<ChatMessage>().Where(i => i.ConversationId == conv.Id).ToListAsync();
         }
     }
 }
