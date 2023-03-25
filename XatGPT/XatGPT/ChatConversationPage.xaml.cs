@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
@@ -46,16 +48,21 @@ namespace XatGPT
         public ChatRequest DefaultChatRequestArgs { get; set; } =
             new ChatRequest() { Model = Model.ChatGPTTurbo };
 
-        async void LoadMessages()
+        async Task<int> LoadMessages()
         {
-            this.messages.Clear();
             var dbInstance = await ChatConversationDB.Instance;
             var msgs = await dbInstance.GetChatMessageFromConversation(this.refChatConversation);
+            this.messages.Clear();
             foreach (var msg in msgs) {
                 this.messages.AddLast(msg);
             }
-
-            this.ChatList.IsRefreshing = false;
+            this.ChatList.ItemsSource = msgs;
+            if (msgs.Count > 0)
+            {
+                // Scroll to the end
+                this.ChatList.ScrollTo(msgs[msgs.Count - 1], ScrollToPosition.End, true);
+            }
+            return msgs.Count;
         }
 
         void PrepareRequest()
@@ -67,6 +74,7 @@ namespace XatGPT
             refChatConversation.Request.Temperature =
                 refChatConversation.Temperature;
             refChatConversation.Request.Model = refChatConversation.ModelName;
+            refChatConversation.Request.Messages = new List<OpenAI_API.Chat.ChatMessage>();
         }
 
         void ChatSettingButton_Clicked(System.Object sender, System.EventArgs e)
@@ -77,7 +85,62 @@ namespace XatGPT
         async void ChatList_Refreshing(System.Object sender, System.EventArgs e)
 		{
             // Load the messages
-            LoadMessages();
+            await LoadMessages();
+
+            this.ChatList.IsRefreshing = false;
+        }
+
+        async Task<string> SendCoversationAndGetResponse()
+        {
+            if (this.refChatConversation.Conversation == null)
+            {
+                var api = new OpenAIAPI(OpenAIAPIKey);
+                this.refChatConversation.Request.Messages.Clear();
+                var msg = new OpenAI_API.Chat.ChatMessage();
+                msg.Content = this.refChatConversation.SystemMessage;
+                msg.Role = ChatMessageRole.System;
+                this.refChatConversation.Request.Messages.Add(msg);
+                for (int i = 0; i < this.messages.Count && i < 4; i++)
+                {
+                    msg = new OpenAI_API.Chat.ChatMessage();
+                    msg.Content = this.messages.Last.Value.Text;
+                    msg.Role = this.messages.Last.Value.Role;
+                    this.refChatConversation.Request.Messages.Insert(1, msg);
+                }
+                var res = await api.Chat.CreateChatCompletionAsync(this.refChatConversation.Request);
+                if (res.Choices.Count > 0)
+                {
+                    return res.Choices[0].Message.Content;
+                }
+            }
+            return "";
+        }
+
+        async void SendButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            if (this.MessageEditor.Text.Length > 0)
+            {
+                var chatMessage = new ChatMessage(this.MessageEditor.Text,
+                    ChatMessageRole.User);
+                chatMessage.ConversationId = this.refChatConversation.Id;
+
+                this.MessageEditor.Text = "";
+
+                // Save to DB
+                var dbInstance = await ChatConversationDB.Instance;
+                await dbInstance.SaveMessageAsync(chatMessage);
+                await LoadMessages();
+
+                var reply = await SendCoversationAndGetResponse();
+                if (reply.Length > 0)
+                {
+                    var replyMessage = new ChatMessage(reply,
+                        ChatMessageRole.Assistant);
+                    replyMessage.ConversationId = this.refChatConversation.Id;
+                    await dbInstance.SaveMessageAsync(replyMessage);
+                    await LoadMessages();
+                }
+            }
         }
     }
 }

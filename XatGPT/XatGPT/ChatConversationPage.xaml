@@ -29,8 +29,7 @@
                   Refreshing="ChatList_Refreshing"
                   IsPullToRefreshEnabled="true"
                   HasUnevenRows="True"
-                  SeparatorVisibility="None"
-                  ItemsSource="{Binding Messages}" >
+                  SeparatorVisibility="None" >
             <ListView.Header>
                 <StackLayout Orientation="Horizontal">
                     <Label HorizontalTextAlignment="Center"
@@ -86,12 +85,13 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Editor VerticalOptions="CenterAndExpand"
-                        Text="{Binding MessageText}"
+                        x:Name="MessageEditor"
                         AutoSize="TextChanges"
                         Placeholder="Type your message"
                         Grid.Column="0" />
                 <Button HorizontalOptions="EndAndExpand"
                         VerticalOptions="CenterAndExpand"
+                        Clicked="SendButton_Clicked"
                         Text="Send"
                         Margin="5"
                         Grid.Column="1" />

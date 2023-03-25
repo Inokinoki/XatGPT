@@ -17,11 +17,12 @@ namespace XatGPT
         {
             set
             {
-                this.Role = ChatMessageRole.FromString(value);
+                this.Role = (ChatMessageRole.FromString(value) == null ?
+                    ChatMessageRole.System : ChatMessageRole.FromString(value));
             }
             get
             {
-                return (string)this.Role;
+                return this.Role.ToString();
             }
         }
 
