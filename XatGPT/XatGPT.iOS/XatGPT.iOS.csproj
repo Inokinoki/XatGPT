@@ -27,6 +27,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchSdkVersion>16.1</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -132,5 +133,23 @@
       <Project>{1B81189D-989D-4B9D-B0A7-E2AE650CEE6F}</Project>
       <Name>XatGPT</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\send.svg" />
+    <BundleResource Include="Resources\settings.svg" />
+    <BundleResource Include="Resources\edit.svg" />
+    <BundleResource Include="Resources\new.svg" />
+    <BundleResource Include="Resources\settings.png" />
+    <BundleResource Include="Resources\edit.png" />
+    <BundleResource Include="Resources\completion.svg" />
+    <BundleResource Include="Resources\chat.svg" />
+    <BundleResource Include="Resources\chat.png" />
+    <BundleResource Include="Resources\completion.png" />
+    <BundleResource Include="Resources\new.png" />
+    <BundleResource Include="Resources\user.svg" />
+    <BundleResource Include="Resources\openai.svg" />
+    <BundleResource Include="Resources\openai.png" />
+    <BundleResource Include="Resources\user.png" />
+    <BundleResource Include="Resources\send.png" />
   </ItemGroup>
 </Project>

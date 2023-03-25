@@ -9,7 +9,7 @@
                    VerticalOptions="CenterAndExpand"
                    FontAttributes="Bold" />
             <Button x:Name="NewChatButton"
-                   Text="New"
+                    ImageSource="new.png"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="End"
                    Clicked="NewChatButton_Clicked" />

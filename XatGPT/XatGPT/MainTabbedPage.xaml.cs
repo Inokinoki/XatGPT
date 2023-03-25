@@ -9,7 +9,6 @@ using Xamarin.Forms.Xaml;
 
 namespace XatGPT
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainTabbedPage : TabbedPage
     {
         public MainTabbedPage ()

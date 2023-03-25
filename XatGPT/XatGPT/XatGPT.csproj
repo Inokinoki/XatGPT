@@ -21,5 +21,6 @@
     <None Remove="OpenAI" />
     <None Remove="sqlite-net-pcl" />
     <None Remove="Xam.Plugins.Settings" />
+    <None Remove="Xamarin.Forms.Svg" />
   </ItemGroup>
 </Project>

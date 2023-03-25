@@ -4,22 +4,26 @@
             xmlns:local="clr-namespace:XatGPT"
             x:Class="XatGPT.MainTabbedPage">
     
-    <NavigationPage Title="Chats">
+    <NavigationPage Title="Chats"
+                    IconImageSource="chat.png" >
         <x:Arguments>
             <local:MainPage />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Completion">
+    <NavigationPage Title="Completion"
+                    IconImageSource="completion.png" >
         <x:Arguments>
             <local:CompletionPage />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Edit">
+    <NavigationPage Title="Edit" 
+                    IconImageSource="edit.png" >
         <x:Arguments>
             <local:EditPage />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Settings">
+    <NavigationPage Title="Settings"
+                    IconImageSource="settings.png" >
         <x:Arguments>
             <local:ConfigurationPage />
         </x:Arguments>
