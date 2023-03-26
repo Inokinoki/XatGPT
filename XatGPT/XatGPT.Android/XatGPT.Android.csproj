@@ -85,23 +85,13 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
-    <AndroidResource Include="..\XatGPT.iOS\Resources\chat.png">
-      <Link>Resources\drawable\chat.png</Link>
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="..\XatGPT.iOS\Resources\completion.png">
-      <Link>Resources\drawable\completion.png</Link>
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
     <AndroidResource Include="..\XatGPT.iOS\Resources\edit.png">
       <Link>Resources\drawable\edit.png</Link>
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="..\XatGPT.iOS\Resources\new.png">
-      <Link>Resources\drawable\new.png</Link>
+    <AndroidResource Include="..\XatGPT.iOS\Resources\newchat.png">
+      <Link>Resources\drawable\newchat.png</Link>
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -122,6 +112,16 @@
     </AndroidResource>
     <AndroidResource Include="..\XatGPT.iOS\Resources\user.png">
       <Link>Resources\drawable\user.png</Link>
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="..\XatGPT.iOS\Resources\completion.png">
+      <Link>Resources\drawable\completion.png</Link>
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="..\XatGPT.iOS\Resources\chat.png">
+      <Link>Resources\drawable\chat.png</Link>
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

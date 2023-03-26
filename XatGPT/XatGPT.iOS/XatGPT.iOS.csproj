@@ -138,14 +138,14 @@
     <BundleResource Include="Resources\send.svg" />
     <BundleResource Include="Resources\settings.svg" />
     <BundleResource Include="Resources\edit.svg" />
-    <BundleResource Include="Resources\new.svg" />
+    <BundleResource Include="Resources\newchat.svg" />
     <BundleResource Include="Resources\settings.png" />
     <BundleResource Include="Resources\edit.png" />
     <BundleResource Include="Resources\completion.svg" />
     <BundleResource Include="Resources\chat.svg" />
     <BundleResource Include="Resources\chat.png" />
     <BundleResource Include="Resources\completion.png" />
-    <BundleResource Include="Resources\new.png" />
+    <BundleResource Include="Resources\newchat.png" />
     <BundleResource Include="Resources\user.svg" />
     <BundleResource Include="Resources\openai.svg" />
     <BundleResource Include="Resources\openai.png" />

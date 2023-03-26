@@ -77,9 +77,11 @@ namespace XatGPT
             refChatConversation.Request.Messages = new List<OpenAI_API.Chat.ChatMessage>();
         }
 
-        void ChatSettingButton_Clicked(System.Object sender, System.EventArgs e)
+        async void ChatSettingButton_Clicked(System.Object sender, System.EventArgs e)
         {
-			// TODO: Open a page to configure parameters
+            // Open a page to configure parameters
+            await Navigation.PushAsync(
+                new ConversationConfPage(this.refChatConversation));
         }
 
         async void ChatList_Refreshing(System.Object sender, System.EventArgs e)
