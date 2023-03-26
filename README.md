@@ -13,3 +13,5 @@ Install Visual Studio for Mac and open the solution (.sln file).
 ## Previews
 
 ![Application Preview on iOS](.github/images/chat-preview.png)
+
+![Application Preview on Android](.github/images/chat-preview-android.png)
